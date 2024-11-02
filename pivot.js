@@ -55,3 +55,39 @@ function pivot(arr, start = 0, end = arr.length - 1) {
 
 // arr2.slice(0, 4).sort((a, b) => a - b); // [0, 2, 4, 5]
 // arr2.slice(4).sort((a, b) => a - b); // [8, 10, 11, 12, 13, 16]
+
+// quickSort:
+// The quickSort function is the main function that implements the quick sort algorithm. It will use the pivot helper function to help with the partitioning of the array elements. The quickSort function will recursively call itself on the left and right side of the pivot until the entire array is sorted. The quickSort function should return the sorted array.
+
+// Pseudocode:
+// - Pick an element in the array and designate it as the "pivot". While there are many ways to choose the pivot, we'll use the first element in this case. This isn't normally the best choice, but it makes the code easier to understand.
+// - Next, compare every other element in the array to the pivot.
+// - If it's less than the pivot, move it to the left of the pivot.
+// - If it's greater, move it to the right.
+// - Once you have finished comparing, the pivot will be in the right place.
+// - Next, recursively call the quickSort again with the left and right halves from the pivot until the array is sorted.
+
+// Time complexity: O(n log n) - best and average case, O(n^2) - worst case
+// Space complexity: O(log n) - best and average case, O(n) - worst case
+
+function quickSort(arr, left = 0, right = arr.length - 1) {
+  if (left < right) {
+    let pivotIndex = pivot(arr, left, right);
+    // Recursively call the quickSort again with the left and right halves from the pivot until the array is sorted.
+    quickSort(arr, left, pivotIndex - 1);
+    quickSort(arr, pivotIndex + 1, right);
+  }
+  return arr;
+}
+
+// Test cases:
+
+quickSort([4, 20, 12, 10, 7, 9]); // [4, 7, 9, 10, 12, 20]
+quickSort([0, -10, 7, 4]); // [-10, 0, 4, 7]
+quickSort([1, 2, 3]); // [1, 2, 3]
+quickSort([]); // []
+
+let nums = [
+  4, 3, 5, 3, 43, 232, 4, 34, 232, 32, 4, 35, 34, 23, 2, 453, 546, 75, 67, 4342,
+  32,
+];
