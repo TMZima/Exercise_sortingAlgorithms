@@ -60,6 +60,49 @@ let arr5 = [3, 4, 5];
 let arr6 = [1, 2];
 merge(arr5, arr6); // [1,2,3,4,5]
 
-function mergeSort() {}
+// mergeSort function:
+
+// Implement the merge sort algorithm. Given an array, this algorithm will sort the values in the array. Here's some guidance for how merge sort should work:
+// Break up the array into halves until you can compare one value with another.
+// Once you have smaller sorted arrays, merge those arrays with other sorted pairs until you are back at the full length of the array.
+// Once the array has been merged back together, return the merged (and sorted!) array.
+
+// This will be a recursive function!
+
+// Psuedocode:
+// Break up the array into halves until you can compare one value with another.
+// - Base case: if the array length is less than or equal to 1, return the array.
+// - Find the middle point of the array.
+// - Slice the array into left and right halves.
+// - Call mergeSort recursively on the left half.
+// - Call mergeSort recursively on the right half.
+// - Return the merge of the left and right halves.
+
+// Time complexity: O(n log n)
+// Space complexity: O(n)
+
+function mergeSort(arr) {
+  // Base case: if the array length is less than or equal to 1, return the array.
+  if (arr.length <= 1) return arr;
+  // Find the middle point of the array.
+  let mid = Math.floor(arr.length / 2);
+  // Slice the array into left and right halves.
+  let left = mergeSort(arr.slice(0, mid));
+  let right = mergeSort(arr.slice(mid));
+  // Return the merge of the left and right halves.
+  return merge(left, right);
+}
+
+// Test cases:
+
+mergeSort([4, 20, 12, 10, 7, 9]); // [4,7,9,10,12,20]
+mergeSort([0, -10, 7, 4]); // [-10,0,4,7]
+mergeSort([1, 2, 3]); // [1,2,3]
+mergeSort([]); // []
+
+let nums = [
+  4, 3, 5, 3, 43, 232, 4, 34, 232, 32, 4, 35, 34, 23, 2, 453, 546, 75, 67, 4342,
+  32,
+];
 
 module.exports = { merge, mergeSort };
